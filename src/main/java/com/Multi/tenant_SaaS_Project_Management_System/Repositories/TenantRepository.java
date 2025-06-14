@@ -17,6 +17,8 @@ public interface TenantRepository extends JpaRepository<Tenant, Long> {
 
     Optional<Tenant> findByDatabaseName(String databaseName);
 
+
+
     List<Tenant> findByStatus(TenantStatus status);
 
     boolean existsByTenantCode(String tenantCode);
