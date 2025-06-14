@@ -45,12 +45,7 @@ public class TenantController {
         return ResponseEntity.ok(tenantDto);
     }
 
-    // Get tenant by ID with configurations
-    @GetMapping("/{id}/configurations")
-    public ResponseEntity<TenantDto> getTenantWithConfigurations(@PathVariable Long id) {
-        TenantDto tenantDto = tenantService.getTenantByIdWithConfigurations(id);
-        return ResponseEntity.ok(tenantDto);
-    }
+
 
     // Get all tenants
     @GetMapping
@@ -116,7 +111,6 @@ public class TenantController {
         return ResponseEntity.ok(exists);
     }
 
-    // Check if tenant exists by database name
     @GetMapping("/exists/database/{databaseName}")
     public ResponseEntity<Boolean> existsByDatabaseName(@PathVariable String databaseName) {
         boolean exists = tenantService.existsByDatabaseName(databaseName);

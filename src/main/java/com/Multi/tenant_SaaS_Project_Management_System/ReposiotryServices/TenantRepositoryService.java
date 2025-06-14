@@ -32,6 +32,7 @@ public class TenantRepositoryService {
                 .orElseThrow(() -> new ResourceNotFoundException("Tenant not found with databaseName " + databaseName));
     }
 
+
     public List<Tenant> getByStatus(TenantStatus status) {
         return repository.findByStatus(status);
     }

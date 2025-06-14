@@ -33,6 +33,7 @@ public class TenantServiceImpl implements TenantService {
     @Override
     @Transactional
     public TenantDto createTenant(TenantCreateDto createDto) {
+
         validateDto(createDto);
         Tenant entity = mapper.toEntity(createDto);
         entity.setCreatedAt(LocalDateTime.now());
@@ -59,11 +60,7 @@ public class TenantServiceImpl implements TenantService {
         return mapper.toDto(byTenantCode);
     }
 
-    @Override
-    public TenantDto getTenantByIdWithConfigurations(Long id) {
-        Tenant tenant = repositoryService.getByTenantById(id); // Replace if a method with eager fetch exists
-        return mapper.toDto(tenant);
-    }
+
 
     @Override
     public List<TenantDto> getAllTenants() {

@@ -24,12 +24,10 @@ public interface TenantConfigurationService {
 
     List<TenantConfigurationDto> getConfigurationsByTenantIdAndType(Long tenantId, ConfigType configType);
 
-    TenantConfigurationDto updateConfiguration(Long id, TenantConfigurationUpdateDto updateDto);
 
     /**
      * Create or update configuration atomically
      */
-    TenantConfigurationDto upsertConfiguration(Long tenantId, String configKey, String configValue, ConfigType configType);
 
     void deleteConfiguration(Long id);
 

@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface TenantService {
 
@@ -21,7 +20,6 @@ public interface TenantService {
     /**
      * Fetch tenant with configurations eagerly loaded if needed
      */
-    TenantDto getTenantByIdWithConfigurations(Long id);
 
     List<TenantDto> getAllTenants();
 
