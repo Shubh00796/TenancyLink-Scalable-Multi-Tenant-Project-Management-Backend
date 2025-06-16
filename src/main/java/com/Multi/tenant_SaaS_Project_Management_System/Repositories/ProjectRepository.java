@@ -36,6 +36,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query("SELECT p FROM Project p WHERE p.endDate < :date AND p.status NOT IN ('COMPLETED', 'CANCELLED')")
     List<Project> findOverdueProjects(@Param("date") LocalDate date);
 
+
     @Query("SELECT p FROM Project p WHERE p.startDate <= :date AND p.endDate >= :date")
     List<Project> findActiveProjectsOnDate(@Param("date") LocalDate date);
 
@@ -44,9 +45,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
                                             @Param("endDate") LocalDate endDate);
 
     // Search queries
-    @Query("SELECT p FROM Project p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%')) " +
-            "OR LOWER(p.description) LIKE LOWER(CONCAT('%', :search, '%')) " +
-            "OR LOWER(p.projectCode) LIKE LOWER(CONCAT('%', :search, '%'))")
+    @Query("SELECT p FROM Project p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))")
     List<Project> searchProjects(@Param("search") String search);
 
     // Active projects (PLANNING, IN_PROGRESS) - commonly used business states

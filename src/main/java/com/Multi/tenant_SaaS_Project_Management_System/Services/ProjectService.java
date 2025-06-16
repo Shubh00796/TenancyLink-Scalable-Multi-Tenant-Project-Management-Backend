@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface ProjectService {
 
@@ -20,7 +19,7 @@ public interface ProjectService {
 
     ProjectDto getProjectById(Long id);
 
-     ProjectDto getProjectByCode(String projectCode);
+    ProjectDto getProjectByCode(String projectCode);
 
     Page<ProjectDto> getAllProjects(Pageable pageable);
 
