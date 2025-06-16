@@ -5,7 +5,6 @@ import com.Multi.tenant_SaaS_Project_Management_System.DTOs.TenantConfigurationD
 import com.Multi.tenant_SaaS_Project_Management_System.DTOs.TenantConfigurationUpdateDto;
 import com.Multi.tenant_SaaS_Project_Management_System.Entities.TenantConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
