@@ -4,14 +4,12 @@ import com.Multi.tenant_SaaS_Project_Management_System.DTOs.*;
 import com.Multi.tenant_SaaS_Project_Management_System.Entities.User;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.UserRole;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.UserStatus;
-import com.Multi.tenant_SaaS_Project_Management_System.Exceptions.ResourceNotFoundException;
 import com.Multi.tenant_SaaS_Project_Management_System.Mappers.UserMapper;
 import com.Multi.tenant_SaaS_Project_Management_System.ReposiotryServices.UserRepositoryService;
 import com.Multi.tenant_SaaS_Project_Management_System.Services.UserService;
 import com.Multi.tenant_SaaS_Project_Management_System.Utils.UserPermissionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.bcel.BcelAnnotation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -20,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -68,6 +65,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO getUserByEmail(final String email) {
         User user = repositoryService.findByEmail(email);
+        log.info("rmial" + email);
         return mapper.toDto(user);
     }
 

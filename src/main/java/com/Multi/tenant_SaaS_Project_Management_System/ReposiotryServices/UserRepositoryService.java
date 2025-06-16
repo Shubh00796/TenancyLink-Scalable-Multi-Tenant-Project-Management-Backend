@@ -7,6 +7,7 @@ import com.Multi.tenant_SaaS_Project_Management_System.Enums.UserStatus;
 import com.Multi.tenant_SaaS_Project_Management_System.Exceptions.ResourceNotFoundException;
 import com.Multi.tenant_SaaS_Project_Management_System.Repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class UserRepositoryService {
@@ -38,7 +40,8 @@ public class UserRepositoryService {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("email not found" + email));
+        return userRepository.findByEmail(email).
+                orElseThrow(() -> new ResourceNotFoundException("email not found" + email));
     }
 
     public Optional<User> findByEmailAndStatus(String email, UserStatus status) {

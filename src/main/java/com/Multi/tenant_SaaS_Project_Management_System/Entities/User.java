@@ -14,7 +14,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users", indexes = {
+@Table(name = "usersForTenanat", indexes = {
         @Index(name = "idx_email", columnList = "email"),
         @Index(name = "idx_role", columnList = "role"),
         @Index(name = "idx_status", columnList = "status")
