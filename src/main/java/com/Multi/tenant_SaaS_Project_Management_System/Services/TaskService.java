@@ -51,7 +51,7 @@ public interface TaskService {
     TaskResponseDTO updateTaskProgress(Long taskId, BigDecimal actualHours);
 
     // Query methods
-    List<TaskSummaryDTO> getActiveTasksByAssignee(Long assigneeUserId);
+    List<TaskSummaryDTO> getActiveTasksByAssignee(Long assigneeUserId,  TaskStatus status);
 
     List<TaskSummaryDTO> getOverdueTasks();
 
@@ -59,8 +59,6 @@ public interface TaskService {
 
     List<TaskSummaryDTO> getProjectTasksByStatus(Long projectId, TaskStatus status);
 
-    // Validation methods
-    boolean existsByTaskCode(String taskCode);
 
     long getTaskCountByProjectAndStatus(Long projectId, TaskStatus status);
 }

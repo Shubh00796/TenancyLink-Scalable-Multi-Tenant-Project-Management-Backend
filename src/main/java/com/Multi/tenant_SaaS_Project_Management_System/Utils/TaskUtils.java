@@ -2,9 +2,10 @@ package com.Multi.tenant_SaaS_Project_Management_System.Utils;
 
 import com.Multi.tenant_SaaS_Project_Management_System.Entities.Task;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.TaskStatus;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-
+@Component
 public class TaskUtils {
 
     public static boolean canTransitionTo(Task task, TaskStatus newStatus) {

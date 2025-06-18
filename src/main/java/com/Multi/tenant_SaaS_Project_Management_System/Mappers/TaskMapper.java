@@ -12,6 +12,7 @@ import java.util.List;
 public interface TaskMapper {
 
     // Request DTO -> Entity
+    @Mapping(source = "actualHours", target = "actualHours")
     Task toEntity(TaskRequestDTO dto);
 
     // Update DTO -> Update existing Entity

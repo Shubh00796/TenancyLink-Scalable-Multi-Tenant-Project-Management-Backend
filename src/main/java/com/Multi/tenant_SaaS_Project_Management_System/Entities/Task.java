@@ -67,9 +67,7 @@ public class Task {
     @Column(name = "estimated_hours", precision = 8, scale = 2)
     private BigDecimal estimatedHours;
 
-    @DecimalMin(value = "0.0")
-    @Digits(integer = 6, fraction = 2)
-    @Column(name = "actual_hours", precision = 8, scale = 2, nullable = false)
+    @Column(name = "actual_hours", precision = 8, scale = 2) // adjust precision if needed
     private BigDecimal actualHours;
 
     @Column(name = "due_date")

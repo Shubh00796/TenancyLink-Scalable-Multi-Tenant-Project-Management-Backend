@@ -3,6 +3,7 @@ package com.Multi.tenant_SaaS_Project_Management_System.DTOs;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.TaskPriority;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.TaskStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,6 +47,9 @@ public class TaskRequestDTO {
     @DecimalMin(value = "0.0", inclusive = false, message = "Estimated hours must be greater than 0")
     @Digits(integer = 6, fraction = 2, message = "Estimated hours must have at most 6 integer digits and 2 decimal places")
     private BigDecimal estimatedHours;
+
+    @Column(name = "actual_hours", precision = 8, scale = 2) // adjust precision if needed
+    private BigDecimal actualHours;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Future(message = "Due date must be in the future")

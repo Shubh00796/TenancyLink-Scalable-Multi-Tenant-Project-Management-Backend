@@ -3,6 +3,7 @@ package com.Multi.tenant_SaaS_Project_Management_System.DTOs;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.TaskPriority;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.TaskStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Positive;
@@ -25,6 +26,9 @@ public class TaskUpdateDTO {
 
     @Positive(message = "Assignee user ID must be positive")
     private Long assigneeUserId;
+    @Positive(message = "Assignee user ID must be positive")
+    private Long reporterUserId;
+
 
     private TaskStatus status;
     private TaskPriority priority;
@@ -33,9 +37,9 @@ public class TaskUpdateDTO {
     @Digits(integer = 6, fraction = 2, message = "Estimated hours must have at most 6 integer digits and 2 decimal places")
     private BigDecimal estimatedHours;
 
-    @DecimalMin(value = "0.0", message = "Actual hours cannot be negative")
-    @Digits(integer = 6, fraction = 2, message = "Actual hours must have at most 6 integer digits and 2 decimal places")
-    private BigDecimal actualHours;
+    @Column(name = "actual_hours", precision = 8, scale = 2) // adjust precision if needed
+    private BigDecimal actualHours ;
+
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dueDate;
