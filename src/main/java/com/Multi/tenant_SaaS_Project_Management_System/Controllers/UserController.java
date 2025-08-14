@@ -3,6 +3,7 @@ package com.Multi.tenant_SaaS_Project_Management_System.Controllers;
 import com.Multi.tenant_SaaS_Project_Management_System.DTOs.*;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.UserRole;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.UserStatus;
+import com.Multi.tenant_SaaS_Project_Management_System.ServiceImplimentations.UserSearchService;
 import com.Multi.tenant_SaaS_Project_Management_System.Services.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,15 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+
+    private final UserSearchService searchService;
+
+    @PostMapping("/search")
+    public List<UserDTO> searchUsers(@RequestBody UserSearchCriteria criteria,
+                                     @RequestParam(defaultValue = "0") int page,
+                                     @RequestParam(defaultValue = "10") int size) {
+        return searchService.searchUsers(criteria, page, size);
+    }
 
     // Create a new user
     @PostMapping
