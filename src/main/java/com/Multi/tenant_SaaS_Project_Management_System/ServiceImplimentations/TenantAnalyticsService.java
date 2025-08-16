@@ -63,6 +63,10 @@ public class TenantAnalyticsService {
 
     // 8. Map subscription plan to total allowed projects
     public Map<SubscriptionPlan, Integer> totalProjectsPerPlan(List<TenantDto> tenants) {
+        return getCollect(tenants);
+    }
+
+    private static Map<SubscriptionPlan, Integer> getCollect(List<TenantDto> tenants) {
         return tenants.stream()
                 .collect(Collectors.groupingBy(TenantDto::getSubscriptionPlan,
                         Collectors.summingInt(TenantDto::getMaxProjects)));
