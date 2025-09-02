@@ -20,7 +20,7 @@ public class TenantLifecycleInsightsService {
                 .collect(Collectors.partitioningBy(t -> t.getStatus() == TenantStatus.ACTIVE));
     }
 
-    // 2. Group tenants by plan and return tenant names as comma-separated string
+    // 2. Group tenants by plan and return tenant names as comma-separated
     public Map<SubscriptionPlan, String> tenantNamesPerPlan(List<TenantDto> tenants) {
         return tenants.stream()
                 .collect(Collectors.groupingBy(
