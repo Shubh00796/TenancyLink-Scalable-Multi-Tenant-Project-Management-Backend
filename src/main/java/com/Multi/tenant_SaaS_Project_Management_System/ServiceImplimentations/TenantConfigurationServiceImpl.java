@@ -2,7 +2,6 @@ package com.Multi.tenant_SaaS_Project_Management_System.ServiceImplimentations;
 
 import com.Multi.tenant_SaaS_Project_Management_System.DTOs.TenantConfigurationCreateDto;
 import com.Multi.tenant_SaaS_Project_Management_System.DTOs.TenantConfigurationDto;
-import com.Multi.tenant_SaaS_Project_Management_System.DTOs.TenantConfigurationUpdateDto;
 import com.Multi.tenant_SaaS_Project_Management_System.DTOs.TenantDto;
 import com.Multi.tenant_SaaS_Project_Management_System.Entities.TenantConfiguration;
 import com.Multi.tenant_SaaS_Project_Management_System.Enums.ConfigType;
