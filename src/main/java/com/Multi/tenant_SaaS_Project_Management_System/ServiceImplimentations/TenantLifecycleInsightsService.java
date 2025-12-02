@@ -91,4 +91,12 @@ public class TenantLifecycleInsightsService {
                         Collectors.counting()
                 ));
     }
+
+    // 10. Top N tenants by max users
+    public List<TenantDto> topNTenantsByMaxUsers(List<TenantDto> tenants, int n) {
+        return tenants.stream()
+                .sorted(Comparator.comparingInt(TenantDto::getMaxUsers).reversed())
+                .limit(n)
+                .collect(Collectors.toList());
+    }
 }
