@@ -99,4 +99,53 @@ public class TenantLifecycleInsightsService {
                 .limit(n)
                 .collect(Collectors.toList());
     }
+
+    // 11. Group tenants by status and plan
+    public List<TenantDto> groupByStatusAndPlan(List<TenantDto> tenantDtos, TenantStatus status, SubscriptionPlan plan) {
+        return tenantDtos.stream()
+                .filter(t -> t.getStatus() == status && t.getSubscriptionPlan() == plan)
+                .collect(Collectors.toList());
+
+
+    }
+
+    // 12. Average max projects per subscription plan
+    public Map<SubscriptionPlan, Double> averageMaxProjectsPerPlan(List<TenantDto> tenants) {
+        return tenants.stream()
+                .collect(Collectors.groupingBy(
+                        TenantDto::getSubscriptionPlan,
+                        Collectors.averagingInt(TenantDto::getMaxProjects)
+                ));
+    }
+
+    // 13. Count of tenants created in the last N days
+    public long countTenantsCreatedInLastNDays(List<TenantDto> tenants, int days) {
+        LocalDate cutoffDate = LocalDate.now().minusDays(days);
+        return tenants.stream()
+                .filter(t -> t.getCreatedAt() != null && t.getCreatedAt().toLocalDate().isAfter(cutoffDate))
+                .count();
+    }
+
+
+    // 14. Map of tenant codes to their statuses
+    public Map<String, TenantStatus> mapTenantCodesToStatuses(List<TenantDto> tenants) {
+        return tenants.stream()
+                .collect(Collectors.toMap(
+                        TenantDto::getTenantCode,
+                        TenantDto::getStatus
+                ));
+    }
+
+    // 15. List of tenants with more than X max users
+    public List<TenantDto> tenantsWithMoreThanXMaxUsers(List<TenantDto> tenants, int x) {
+        return tenants.stream()
+                .filter(t -> t.getMaxUsers() > x)
+                .collect(Collectors.toList());
+    }
+
+    // 16. Summary statistics of max projects
+    public IntSummaryStatistics summaryStatisticsOfMaxProjects(List<TenantDto> tenants) {
+        return tenants.stream()
+                .collect(Collectors.summarizingInt(TenantDto::getMaxProjects));
+    }
 }
