@@ -148,4 +148,26 @@ public class TenantLifecycleInsightsService {
         return tenants.stream()
                 .collect(Collectors.summarizingInt(TenantDto::getMaxProjects));
     }
+
+
+    // 17. Check if any tenant is on PREMIUM plan
+    public boolean anyTenantOnPremiumPlan(List<TenantDto> tenants) {
+        return tenants.stream()
+                .anyMatch(t -> t.getSubscriptionPlan() == SubscriptionPlan.PREMIUM);
+    }
+
+    // 18. Get a set of all subscription plans in use
+    public Set<SubscriptionPlan> allSubscriptionPlansInUse(List<TenantDto> tenants) {
+        return tenants.stream()
+                .map(TenantDto::getSubscriptionPlan)
+                .collect(Collectors.toSet());
+    }
+
+    // 19. Find tenants with names starting with a specific prefix
+    public List<TenantDto> tenantsWithNameStartingWith(List<TenantDto> tenants, String prefix) {
+        return tenants.stream()
+                .filter(t -> t.getTenantName() != null && t.getTenantName().startsWith(prefix))
+                .collect(Collectors.toList());
+    }
+
 }
