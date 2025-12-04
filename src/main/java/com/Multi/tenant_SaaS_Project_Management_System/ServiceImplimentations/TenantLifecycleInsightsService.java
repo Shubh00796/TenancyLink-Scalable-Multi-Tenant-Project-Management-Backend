@@ -170,4 +170,46 @@ public class TenantLifecycleInsightsService {
                 .collect(Collectors.toList());
     }
 
+    // 20. Calculate the total max users for active tenants
+    public int totalMaxUsersForActiveTenants(List<TenantDto> tenants) {
+        return tenants.stream()
+                .filter(t -> t.getStatus() == TenantStatus.ACTIVE)
+                .mapToInt(TenantDto::getMaxUsers)
+                .sum();
+
+    }
+
+    // 21. Find the tenant with the longest name
+    public Optional<TenantDto> tenantWithLongestName(List<TenantDto> tenants) {
+        return tenants.stream()
+                .max(Comparator.comparingInt(t -> t.getTenantName() != null ? t.getTenantName().length() : 0));
+    }
+
+    // 22. Group tenants by the year they were created
+    public Map<Integer, List<TenantDto>> groupTenantsByCreationYear(List<TenantDto> tenants) {
+        return tenants.stream()
+                .filter(t -> t.getCreatedAt() != null)
+                .collect(Collectors.groupingBy(t -> t.getCreatedAt().getYear()));
+    }
+
+    // 23. Calculate the percentage of active tenants
+    public double percentageOfActiveTenants(List<TenantDto> tenants) {
+        long activeCount = tenants.stream()
+                .filter(t -> t.getStatus() == TenantStatus.ACTIVE)
+                .count();
+        return tenants.isEmpty() ? 0.0 : (activeCount * 100.0) / tenants.size();
+    }
+
+    // 24. Find tenants created on weekends
+    public List<TenantDto> tenantsCreatedOnWeekends(List<TenantDto> tenants) {
+        return tenants.stream()
+                .filter(t -> {
+                    if (t.getCreatedAt() == null) return false;
+                    int dayOfWeek = t.getCreatedAt().getDayOfWeek().getValue();
+                    return dayOfWeek == 6 || dayOfWeek == 7; // Saturday or Sunday
+                })
+                .collect(Collectors.toList());
+    }
+
+
 }
