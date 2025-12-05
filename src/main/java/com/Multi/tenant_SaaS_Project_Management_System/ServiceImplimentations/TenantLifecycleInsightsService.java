@@ -211,5 +211,29 @@ public class TenantLifecycleInsightsService {
                 .collect(Collectors.toList());
     }
 
+    // 25. Get a map of tenant names to their creation dates
+    public Map<String, LocalDate> mapTenantNamesToCreationDates(List<TenantDto> tenants) {
+        return tenants.stream()
+                .filter(t -> t.getCreatedAt() != null)
+                .collect(Collectors.toMap(
+                        TenantDto::getTenantName,
+                        t -> t.getCreatedAt().toLocalDate()
+                ));
+
+
+    }
+
+    // 26. Find the most common subscription plan
+    public Optional<SubscriptionPlan> mostCommonSubscriptionPlan(List<TenantDto> tenants) {
+        return tenants.stream()
+                .collect(Collectors.groupingBy(
+                        TenantDto::getSubscriptionPlan,
+                        Collectors.counting()
+                ))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey);
+    }
 
 }
